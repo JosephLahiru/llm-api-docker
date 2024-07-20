@@ -34,7 +34,9 @@ class HuggingFaceLLM(BaseLLM):
         }
 
         config = AutoConfig.from_pretrained(
-            settings.setup_params["repo_id"], **setup_params
+            settings.setup_params["repo_id"],
+            token="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",
+            **setup_params
         )
 
         config_params = settings.setup_params.get("config_params", {})
@@ -52,12 +54,14 @@ class HuggingFaceLLM(BaseLLM):
 
         self.model = AutoModelForCausalLM.from_pretrained(
             settings.setup_params["repo_id"],
+            token="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",
             config=config,
             cache_dir=model_dir,
             **params
         )
         self.tokenizer = AutoTokenizer.from_pretrained(
             settings.setup_params["tokenizer_repo_id"],
+            token="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",
             return_token_type_ids=False,
             cache_dir=model_dir,
             **params
